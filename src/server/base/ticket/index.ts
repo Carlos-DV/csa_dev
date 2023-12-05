@@ -1,0 +1,7 @@
+export * from './deparments'
+export * from './tickets'
+export * from './category'
+export * from './subcategory'
+export * from './sla'
+export * from './followsup'
+export * from './branchOffice'
