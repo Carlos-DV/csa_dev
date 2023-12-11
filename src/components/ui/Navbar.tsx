@@ -14,7 +14,7 @@ const Navbar = () => {
   console.log(typeof user?.isAgent)
   return (
     <AppBar
-      position='sticky'
+      //position='sticky'
       elevation={5}
       sx={{
         // padding: '0.5rem'
@@ -61,10 +61,15 @@ const Navbar = () => {
               <Image
                 src={AnconaLogo}
                 alt='logo'
-                width={120}
+                width={150}
                 priority={true}
               />
             </IconButton>
+            <ListItemText
+            style={{color: 'white'}}
+            >
+              CSA Centro de Servicios Ancona
+            </ListItemText>
           </Box>
           <Box
             sx={{
@@ -149,6 +154,7 @@ const Navbar = () => {
                           component={NextLink}
                           underline='none'
                           color={'white'}
+                          sx={{ fontWeight: 'blod' }}
                         >
                           <ListItemButton>
                             <ListItemText>
@@ -181,14 +187,14 @@ const Navbar = () => {
                   //   underline='none'
                   //   color={'white'}
                   // >
-                    <ListItemButton
-                      onClick={logout}
-                    >
-                      <ListItemText>
-                        Logout
-                      </ListItemText>
-                    </ListItemButton>
-                  // </Link>
+                  <ListItemButton
+                    onClick={logout}
+                  >
+                    <ListItemText>
+                      Logout
+                    </ListItemText>
+                  </ListItemButton>
+                // </Link>
               }
 
             </List>

@@ -28,7 +28,6 @@ const MainLayout: FC<PropsWithChildren> = ({ children }) => {
         </Container>
         </Box>
     </Box>
-
   )
 }
 

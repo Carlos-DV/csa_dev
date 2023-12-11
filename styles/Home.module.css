@@ -115,11 +115,11 @@
   }
 }
 .contentImage {
-  background-image:linear-gradient(rgba(57,70,89,.7),rgba(57,70,89,.7)),url(../src/assets/bg-1.jpg);   
+  background-image:linear-gradient(rgba(57,70,89,.7),rgba(57,70,89,.7)),url(../src/assets/HeaderCopia.jpg);   
   background-size:cover;
   background-repeat:no-repeat;
-  background-position:top;
-  object-fit: cover;
+  background-position:center;
+  /* object-fit: cover; */
   padding:10rem 0;
   height: 35rem;
 }

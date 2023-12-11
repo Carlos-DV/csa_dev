@@ -8,7 +8,7 @@ export const lightTheme = createTheme({
         default: /*grey[300]*/ 'white'
       },
       primary: {
-        main: '#4a148c',
+        main: '#00A9FF',
         light: '#6B7280',
       },
       secondary: {
@@ -23,7 +23,7 @@ export const lightTheme = createTheme({
         defaultProps: {},
         styleOverrides: {
           root: {
-            backgroundColor: '#4a148c'
+            backgroundColor: '#7B8FA1',
           }
         }
       },
