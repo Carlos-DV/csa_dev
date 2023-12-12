@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../../styles/Home.module.css'
-import { Box } from '@mui/material'
+import { Box, Button, Paper } from '@mui/material'
 import { PublicLayout, Footer } from '../components/layouts'
 import SchoolIcon from '@mui/icons-material/School';
 import LocalActivityIcon from '@mui/icons-material/LocalActivity';
@@ -119,7 +119,7 @@ const Home: NextPage = () => {
                     height: '4rem',
                     width: '4rem',
                   }}
-                  /> */}
+                /> */}
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
                       Tickets
@@ -134,7 +134,6 @@ const Home: NextPage = () => {
           </Grid>
         </Box>
       </PublicLayout>
-      <Footer></Footer>
     </>
   )
 }
