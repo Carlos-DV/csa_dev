@@ -4,30 +4,42 @@ import imagecard from '../../assets/image/ida-herramientassistemasdiseno-blog-65
 import { CardActionArea } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { baseConomientoAPI } from "../../server";
+import { useRouter } from 'next/router';
 
-const baseConocmiento = () => {
-
-  const [list, setList] = useState('');
+const baseConocimiento = () => {
   const [departament, setDepartament] = useState<
     { pkDepartment: number, name: string, description: string }[]
   >([]);
 
+  const router = useRouter();
+
+  const handleButtonClick = (pkDepartment : any) => {
+    if (pkDepartment !== null) {
+      router.push({
+        pathname: '/base-conocimiento/[pkDepartment]',
+        query: { pkDepartment: pkDepartment },
+      });
+    } else {
+      console.error('Error: No se ha seleccionado ningún pkDepartment.');
+      // Puedes manejar este caso de error según tus necesidades
+    }
+  };
 
   const handlerDepartament = () => {
     baseConomientoAPI.getDepartament().then((res) => {
       const creadores = res.map((item: any) => ({
+        pkDepartment: item.pkDepartment || 0,
         name: item.name || '',
         description: item.description || '',
       }));
+      console.log(creadores);
       setDepartament(creadores);
-    })
-  }
-
+    });
+  };
 
   useEffect(() => {
     handlerDepartament();
   }, []);
-
 
   return (
     <MainLayout>
@@ -36,7 +48,7 @@ const baseConocmiento = () => {
       <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>
         {departament.map((creador, index) => (
           <Card key={index} sx={{ maxWidth: 345, marginTop: '50px', flex: '0 0 30%' }}>
-            <CardActionArea>
+            <CardActionArea onClick={() => handleButtonClick(creador.pkDepartment)}>
               <CardMedia
                 component="img"
                 style={{ height: 'auto' }}
@@ -56,8 +68,7 @@ const baseConocmiento = () => {
         ))}
       </div>
     </MainLayout>
-  )
-  
-}
+  );
+};
 
-export default baseConocmiento
+export default baseConocimiento;
