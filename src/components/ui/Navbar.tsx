@@ -66,7 +66,7 @@ const Navbar = () => {
               />
             </IconButton>
             <ListItemText
-            style={{color: 'white'}}
+              style={{ color: 'white' }}
             >
               CSA Centro de Servicios Ancona
             </ListItemText>
@@ -102,18 +102,32 @@ const Navbar = () => {
               {
                 user && user?.isAgent === 'true'
                   ? (
-                    <Link
-                      href={'/admin'}
-                      component={NextLink}
-                      underline='none'
-                      color={'white'}
-                    >
-                      <ListItemButton>
-                        <ListItemText>
-                          Admin
-                        </ListItemText>
-                      </ListItemButton>
-                    </Link>
+                    <>
+                      <Link
+                        href={'/admin'}
+                        component={NextLink}
+                        underline='none'
+                        color={'white'}
+                      >
+                        <ListItemButton>
+                          <ListItemText>
+                            Admin
+                          </ListItemText>
+                        </ListItemButton>
+                      </Link>
+                      <Link
+                        href={'/base-conocimiento'}
+                        component={NextLink}
+                        underline='none'
+                        color={'white'}
+                      >
+                        <ListItemButton>
+                          <ListItemText>
+                            Base Conocimiento
+                          </ListItemText>
+                        </ListItemButton>
+                      </Link>
+                    </>
                   )
                   :
                   user && user?.isAgent === 'false'
@@ -132,6 +146,7 @@ const Navbar = () => {
                             </ListItemText>
                           </ListItemButton>
                         </Link>
+
                       </>
                     )
                     :
@@ -150,7 +165,7 @@ const Navbar = () => {
                           </ListItemButton>
                         </Link>
                         <Link
-                          href={'/base-conocimiento'}
+                          href={'/base-conocimiento-publico'}
                           component={NextLink}
                           underline='none'
                           color={'white'}
@@ -167,7 +182,6 @@ const Navbar = () => {
               }
               {
                 !isLoggedIn ?
-
                   <Link
                     href={'/login'}
                     component={NextLink}

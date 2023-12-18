@@ -23,7 +23,7 @@ export const lightTheme = createTheme({
         defaultProps: {},
         styleOverrides: {
           root: {
-            backgroundColor: '#7B8FA1',
+            backgroundColor: '#567189',
           }
         }
       },

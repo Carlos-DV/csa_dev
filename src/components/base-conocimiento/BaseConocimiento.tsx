@@ -1,7 +1,7 @@
 const BaseConocimiento = () => {
-  return (
-    <div>BaseConocimiento</div>
-  )
+    return (
+        <div>BaseConocimiento</div>
+    )
 }
 
 export { BaseConocimiento }

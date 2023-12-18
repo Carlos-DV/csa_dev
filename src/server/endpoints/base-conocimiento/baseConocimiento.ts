@@ -30,3 +30,25 @@ export async function getPublicTemas(PkDepartment: string) {
         return delayResponse(() => error(clone(content.Message)));
     }
 }
+
+export async function GetObject(key:string) {
+    const response = await clientAxios.get(`publicknowledgebase/contenido/${key}`);
+    const content = await response.data;
+
+    if(content.succeeded){
+        return delayResponse(Promise.resolve(clone(content)));
+    } else {
+        return delayResponse(Promise.resolve(clone(content)));
+    }
+}
+
+export async function getSearchBaseConocimiento(id : string) {
+    const response = await clientAxios.get(`publicknowledgebase/search/${id}`);
+    const content = await response.data;
+
+    if(content.succeeded){
+        return delayResponse(Promise.resolve(clone(content.result)));
+    } else {
+        return delayResponse(() => error(clone(content.Message)));
+    }
+}

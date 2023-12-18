@@ -4,6 +4,7 @@ const ticketPublic = () => {
   return (
     <MainLayout>
         <TicketPublic/>
+        <h1>Hola Mundo</h1>
     </MainLayout>
   )
 }
