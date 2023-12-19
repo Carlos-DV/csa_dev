@@ -52,3 +52,15 @@ export async function getSearchBaseConocimiento(id : string) {
         return delayResponse(() => error(clone(content.Message)));
     }
 }
+
+export async function getRegisterTemas(PkDepartment: string) {
+    const response = await clientAxios.get(`publicknowledgebase/registered/${PkDepartment}`);
+    const content = await response.data;
+
+    if(content.succeeded){
+        return delayResponse(Promise.resolve(clone(content.result)));
+    }
+    else{
+        return delayResponse(() => error(clone(content.Message)));
+    }
+}

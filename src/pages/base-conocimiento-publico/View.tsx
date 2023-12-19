@@ -99,6 +99,7 @@ const View = () => {
     return (
         <>
             <MainLayout>
+                <br></br><br></br><br></br>
                 <SunEditor
                     lang="es"
                     // getSunEditorInstance={getSunEditorInstance} 

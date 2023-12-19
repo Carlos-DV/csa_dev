@@ -2,7 +2,8 @@ import {
     getDepartament,
     getPublicTemas,
     GetObject,
-    getSearchBaseConocimiento
+    getSearchBaseConocimiento,
+    getRegisterTemas
 } from '../../endpoints'
 
 export class BaseConocimientoAPI implements BaseConocimientoAPI {
@@ -14,6 +15,11 @@ export class BaseConocimientoAPI implements BaseConocimientoAPI {
     getPublicTemas(PkDepartment : string)
     {
         return getPublicTemas(PkDepartment);
+    }
+
+    getRegisterTemas(PkDepartment : string)
+    {
+        return getRegisterTemas(PkDepartment);
     }
 
     getSearchBaseConocimiento(id : string)
