@@ -2,6 +2,7 @@ import { FC, ReactNode, PropsWithChildren } from 'react'
 import Head from 'next/head'
 import { Box, Container } from '@mui/material';
 import { Navbar } from '../ui';
+import {Footer} from './Footer';
 
 interface Props {
     children: ReactNode
@@ -27,6 +28,7 @@ const MainLayout: FC<PropsWithChildren> = ({ children }) => {
           {children}
         </Container>
         </Box>
+        <Footer></Footer>
     </Box>
   )
 }

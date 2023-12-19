@@ -3,6 +3,7 @@ import Head from 'next/head'
 import { Box, Container } from '@mui/material';
 import { Navbar } from '../ui';
 import React from 'react';
+import {Footer} from './Footer';
 
 interface Props {
     children: ReactNode
@@ -26,6 +27,7 @@ const PublicLayout: FC<PropsWithChildren> = ({ children }) => {
             }}>
                 {children}
             </Box>
+            <Footer></Footer>
         </Box>
     );
 }

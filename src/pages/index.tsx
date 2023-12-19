@@ -1,21 +1,29 @@
 import type { NextPage } from 'next'
-import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../../styles/Home.module.css'
 import { Box } from '@mui/material'
-import { PublicLayout, Footer } from '../components/layouts'
-import SchoolIcon from '@mui/icons-material/School';
-import LocalActivityIcon from '@mui/icons-material/LocalActivity';
+import { PublicLayout } from '../components/layouts'
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import ImagenTicket from '../assets/tickets.png';
 import ImagenBase from '../assets/book.png';
+import { useRouter } from 'next/router'
 
 const Home: NextPage = () => {
+  
+  const router = useRouter();
+
+  const RedirectBaseConocimiento = () => {
+    router.push({pathname : '/base-conocimiento-publico/'});
+  }
+
+  const RedirectTicket = () => {
+    router.push({ pathname :'/ticket-publico/'});
+  }
+
   return (
     <>
       <PublicLayout>
@@ -79,7 +87,7 @@ const Home: NextPage = () => {
 
                 }}
               >
-                <CardActionArea>
+                <CardActionArea onClick={RedirectBaseConocimiento}>
                   <Image style={{
                     height: '4rem',
                     width: '4rem', marginTop: '20px'
@@ -108,7 +116,7 @@ const Home: NextPage = () => {
                   marginRight: 25
                 }}
               >
-                <CardActionArea>
+                <CardActionArea onClick={RedirectTicket}>
                   <Image style={{
                     height: '4rem',
                     width: '4rem', marginTop: '20px'
@@ -119,9 +127,9 @@ const Home: NextPage = () => {
                     height: '4rem',
                     width: '4rem',
                   }}
-                  /> */}
+                /> */}
                   <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
+                    <Typography gutterBottom variant="h5" component="div" >
                       Tickets
                     </Typography>
                     <Typography color="text.secondary">
@@ -134,7 +142,6 @@ const Home: NextPage = () => {
           </Grid>
         </Box>
       </PublicLayout>
-      <Footer></Footer>
     </>
   )
 }

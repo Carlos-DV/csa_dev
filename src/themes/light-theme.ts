@@ -8,7 +8,7 @@ export const lightTheme = createTheme({
         default: /*grey[300]*/ 'white'
       },
       primary: {
-        main: '#00A9FF',
+        main: '#7B8FA1',
         light: '#6B7280',
       },
       secondary: {
@@ -23,7 +23,7 @@ export const lightTheme = createTheme({
         defaultProps: {},
         styleOverrides: {
           root: {
-            backgroundColor: '#7B8FA1',
+            backgroundColor: '#567189',
           }
         }
       },
@@ -68,7 +68,7 @@ export const lightTheme = createTheme({
             boxShadow: 'none',
             borderRadius: '0.4rem',
             ":hover": {
-              backgroundColor: 'rgb(55 48 163)',
+              backgroundColor: '#FB8B24',
               transition: 'all 0.3s ease-in-out'
             }
           }

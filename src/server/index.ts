@@ -8,7 +8,8 @@ import {
     FollowUpAPI,
     LoginAPI,
     BranchOfficeAPI,
-    AdmonAPI
+    AdmonAPI,
+    BaseConocimientoAPI,
 }
 from './base'
 
@@ -22,3 +23,4 @@ export const followUpAPI = new FollowUpAPI();
 export const logintAPI = new LoginAPI();
 export const branchOfficeAPI = new BranchOfficeAPI();
 export const admonAPI = new AdmonAPI();
+export const baseConomientoAPI = new BaseConocimientoAPI();
