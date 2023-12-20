@@ -1,8 +1,14 @@
-import { ITicket, ITicketCreate } from "../../../interfaces";
+import { ITicket, ITicketCreate, ITickets } from "../../../interfaces";
 import { clientAxios } from "../../axios";
 import { clone, delayResponse, error } from "../../utils";
 
 const BASE = '/ticket';
+
+type ApiResponse = {
+    message: string,
+    result: ITickets[],
+    succeeded: boolean,
+}
 
 export const createTicketRequest = async (newTicket : ITicket) => {
     try {
@@ -16,6 +22,22 @@ export const createTicketRequest = async (newTicket : ITicket) => {
         return delayResponse(() => error(clone(data)));
     } catch (error) {
         console.log(`${error}`)
+    }
+}
+
+//obtengo lista x departamento
+export const getListTickets = async (req: number) : Promise<ITickets[]> => {
+    try {
+        const url = `${BASE}/user/${req}`;
+        const { data } = await clientAxios.get<ApiResponse>(url);
+        const { succeeded, result } = data;
+        if(succeeded) {
+            return delayResponse(Promise.resolve(clone(result)));
+        }
+        return delayResponse(() => error(clone(data)));
+    } catch (error) {
+        console.error(error);
+        throw error;
     }
 }
 

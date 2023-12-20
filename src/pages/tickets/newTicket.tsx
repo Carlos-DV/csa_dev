@@ -8,10 +8,10 @@ const newTicket = () => {
 
   return (
     <UIProvider>
-    <MainLayout>
-        <TicketFormTI/>
-    </MainLayout>
-  </UIProvider>
+      <MainLayout>
+        <TicketFormTI />
+      </MainLayout>
+    </UIProvider>
   )
 }
 

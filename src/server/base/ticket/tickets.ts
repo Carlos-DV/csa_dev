@@ -1,5 +1,5 @@
 import { ITicket } from "../../../interfaces";
-import { createTicketRequest, getTicketByFkUser, getTicketById, getTickets } from "../../endpoints"
+import { createTicketRequest, getListTickets, getTicketByFkUser, getTicketById, getTickets } from "../../endpoints"
 
 export class TicketAPI implements TicketAPI {
     createTicketRequest(ticket: ITicket){
@@ -13,5 +13,8 @@ export class TicketAPI implements TicketAPI {
     }
     getTicketByFkUser(fkUser : number) {
         return getTicketByFkUser(fkUser);
+    }
+    getListTickets(req: number) {
+        return getListTickets(req)
     }
 }

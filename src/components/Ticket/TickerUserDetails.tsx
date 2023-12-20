@@ -89,7 +89,8 @@ const TickerUserDetails :FC<IResponse> = ({ convertId }) => {
                     md: 'row',
                   },
                   gap: '1.5rem',
-                  borderRadius: '.5rem'
+                  borderRadius: '.5rem',
+                  marginTop:'10rem'
                 }}
               >    
                 {

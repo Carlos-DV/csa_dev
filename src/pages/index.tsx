@@ -13,15 +13,15 @@ import ImagenBase from '../assets/book.png';
 import { useRouter } from 'next/router'
 
 const Home: NextPage = () => {
-  
+
   const router = useRouter();
 
   const RedirectBaseConocimiento = () => {
-    router.push({pathname : '/base-conocimiento-publico/'});
+    router.push({ pathname: '/base-conocimiento-publico/' });
   }
 
   const RedirectTicket = () => {
-    router.push({ pathname :'/ticket-publico/'});
+    router.push({ pathname: '/ticket-publico/' });
   }
 
   return (
@@ -88,10 +88,13 @@ const Home: NextPage = () => {
                 }}
               >
                 <CardActionArea onClick={RedirectBaseConocimiento}>
-                  <Image style={{
-                    height: '4rem',
-                    width: '4rem', marginTop: '20px'
-                  }} alt={''} {...ImagenBase}></Image>
+                  <Image
+                    alt={'Image-Base-Conocimiento'}
+                    src={ImagenBase}
+                    width={64}
+                    height={64}
+                    style={{ marginTop: '20px' }}
+                  />
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
                       Base de conocimientos
@@ -117,10 +120,13 @@ const Home: NextPage = () => {
                 }}
               >
                 <CardActionArea onClick={RedirectTicket}>
-                  <Image style={{
-                    height: '4rem',
-                    width: '4rem', marginTop: '20px'
-                  }} alt={''} {...ImagenTicket}></Image>
+                  <Image
+                    alt={'Image-Base-Conocimiento'}
+                    src={ImagenTicket}
+                    width={64}
+                    height={64}
+                    style={{ marginTop: '20px' }}
+                  />
                   {/* <LocalActivityIcon
                   sx={{
                     marginTop: '1rem',
