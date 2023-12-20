@@ -27,7 +27,6 @@ const PublicLayout: FC<PropsWithChildren> = ({ children }) => {
             }}>
                 {children}
             </Box>
-            <Footer></Footer>
         </Box>
     );
 }

@@ -1,7 +1,9 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { baseConomientoAPI } from "../../server";
+import { Footer } from '../../components/layouts';
 import { Formulario, MainLayout } from "../../components";
+import imagecard from '../../assets/image/apoyo-tecnico.gif';
 import {
     Card,
     CardActionArea,
@@ -11,6 +13,7 @@ import {
     CardActions,
     Button,
 } from "@mui/material";
+import { DisplaySettings } from "@mui/icons-material";
 
 const formulario = () => {
     const [departament, setDepartament] = useState<
@@ -37,26 +40,36 @@ const formulario = () => {
         <>
             <MainLayout>
                 <Formulario></Formulario>
-                {departament.map((creador, index) => (
-                    <Card key={index} sx={{ maxWidth: 400 }}>
-                        <CardActionArea>
-                            <CardContent>
-                                <Typography gutterBottom variant="h5" component="div">
-                                    {creador.name}
-                                </Typography>
-                                <Typography variant="body2" color="text.secondary">
-                                    {creador.description}
-                                </Typography>
-                            </CardContent>
-                        </CardActionArea>
-                        <CardActions>
-                            <Button size="small" color="primary">
-                                Enviar Ticket
-                            </Button>
-                        </CardActions>
-                    </Card>
-                ))}
+                <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>
+                    {departament.map((creador, index) => (
+                        <Card key={index} sx={{ maxWidth: 400, marginTop: '50px', flex: '0 0 30%' }}>
+                            <CardActionArea>
+                                <CardMedia
+                                    component="img"
+                                    style={{ height: '100px', width: '100px' }}
+                                    {...imagecard}
+                                    alt="Card"
+                                />
+                                <CardContent>
+                                    <Typography gutterBottom variant="h5" component="div">
+                                        {creador.name}
+                                    </Typography>
+                                </CardContent>
+                            </CardActionArea>
+                            <Typography variant="body2" color="text.secondary">
+                                {creador.description}
+                            </Typography>
+                            <CardActions>
+                                <Button size="small" color="primary">
+                                    Enviar Ticket
+                                </Button>
+                            </CardActions>
+                        </Card>
+                    ))}
+
+                </div>
             </MainLayout>
+            <Footer></Footer>
         </>
     );
 };

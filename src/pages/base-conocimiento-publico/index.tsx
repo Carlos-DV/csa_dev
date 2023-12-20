@@ -5,6 +5,7 @@ import { CardActionArea } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { baseConomientoAPI } from "../../server";
 import { useRouter } from 'next/router';
+import { Footer } from '../../components/layouts';
 
 const baseConocimientoPublico = () => {
   const [departament, setDepartament] = useState<
@@ -13,7 +14,7 @@ const baseConocimientoPublico = () => {
 
   const router = useRouter();
 
-  const handleButtonClick = (pkDepartment : any) => {
+  const handleButtonClick = (pkDepartment: any) => {
     if (pkDepartment !== null) {
       router.push({
         pathname: '/base-conocimiento-publico/[pkDepartment]',
@@ -42,32 +43,35 @@ const baseConocimientoPublico = () => {
   }, []);
 
   return (
-    <MainLayout>
-      <BaseConocimientoPublico>
-      </BaseConocimientoPublico>
-      <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>
-        {departament.map((creador, index) => (
-          <Card key={index} sx={{ maxWidth: 345, marginTop: '50px', flex: '0 0 30%' }}>
-            <CardActionArea onClick={() => handleButtonClick(creador.pkDepartment)}>
-              <CardMedia
-                component="img"
-                style={{ height: 'auto' }}
-                {...imagecard}
-                alt="Card"
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  {creador.name}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  {creador.description}
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-          </Card>
-        ))}
-      </div>
-    </MainLayout>
+    <>
+      <MainLayout>
+        <BaseConocimientoPublico>
+        </BaseConocimientoPublico>
+        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>
+          {departament.map((creador, index) => (
+            <Card key={index} sx={{ maxWidth: 345, marginTop: '50px', flex: '0 0 30%' }}>
+              <CardActionArea onClick={() => handleButtonClick(creador.pkDepartment)}>
+                <CardMedia
+                  component="img"
+                  style={{ height: 'auto' }}
+                  {...imagecard}
+                  alt="Card"
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="div">
+                    {creador.name}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    {creador.description}
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+            </Card>
+          ))}
+        </div>
+      </MainLayout>
+      <Footer></Footer>
+    </>
   );
 };
 

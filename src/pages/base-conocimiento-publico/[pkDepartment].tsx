@@ -5,7 +5,7 @@ import { baseConomientoAPI } from "../../server";
 import { Typography } from "@mui/material";
 import maletin from "../../assets/image/maletin.png";
 import doc from "../../assets/image/docs.png";
-import portafolio from "../../assets/image/portafolio.png";
+import portafolio from "../../assets/image/maletin.gif";
 import Image from "next/image";
 
 const ViewBaseConocimiento = () => {

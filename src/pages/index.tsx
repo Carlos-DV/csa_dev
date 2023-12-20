@@ -8,20 +8,36 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import Grid from '@mui/material/Grid';
-import ImagenTicket from '../assets/tickets.png';
-import ImagenBase from '../assets/book.png';
+import ImagenTicket from '../assets/image/boleto.gif';
+import ImagenBase from '../assets/image/libro.gif';
 import { useRouter } from 'next/router'
+import {Footer} from '../components/layouts';
+import { useAuth } from "../hooks";
 
 const Home: NextPage = () => {
   
   const router = useRouter();
+  const { user } = useAuth();
 
   const RedirectBaseConocimiento = () => {
-    router.push({pathname : '/base-conocimiento-publico/'});
+    if(user?.isAgent === "true")
+    {
+      router.push({pathname : '/base-conocimiento/'});
+    }
+    else{
+      router.push({pathname : '/base-conocimiento-publico/'});
+    }
   }
 
   const RedirectTicket = () => {
-    router.push({ pathname :'/ticket-publico/'});
+    if(user?.isAgent === "true")
+    {
+      router.push({ pathname :'/ticket/'});
+    }
+    else
+    {
+      router.push({ pathname :'/ticket-publico/'});
+    }
   }
 
   return (
@@ -142,6 +158,7 @@ const Home: NextPage = () => {
           </Grid>
         </Box>
       </PublicLayout>
+      <Footer></Footer>
     </>
   )
 }
