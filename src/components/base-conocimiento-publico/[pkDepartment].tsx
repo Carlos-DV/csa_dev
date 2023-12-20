@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { BaseConocimientoPublico, MainLayout } from "../../components";
+import { Footer, MainLayout } from "../../components/layouts";
 import { useEffect, useState } from "react";
 import { baseConomientoAPI } from "../../server";
 import { Typography } from "@mui/material";
@@ -8,8 +8,9 @@ import doc from "../../assets/image/docs.png";
 import portafolio from "../../assets/image/maletin.gif";
 import Image from "next/image";
 
-const ViewBaseConocimiento = () => {
+const PkDepartment = () => {
     const router = useRouter();
+
     const [departament, setDepartament] = useState<
         {
             pkNotas: number;
@@ -24,12 +25,14 @@ const ViewBaseConocimiento = () => {
         ? router.query.pkDepartment[0]
         : router.query.pkDepartment || "";
 
+    console.log("pk", pkDepartment);
+
     const handleRedirect = (pkNotas: any, contenido: any) => {
         router.push({
-            pathname: '/base-conocimiento-publico/View/',
+            pathname: "/base-conocimiento-publico/ViewBaseConocimiento/",
             query: { pkNotas: pkNotas, contenido: contenido },
         });
-    }
+    };
 
     const handlerTemas = () => {
         baseConomientoAPI.getPublicTemas(pkDepartment).then((res) => {
@@ -46,8 +49,7 @@ const ViewBaseConocimiento = () => {
 
     useEffect(() => {
         handlerTemas();
-    }, []);
-
+    }, [pkDepartment]);
 
     return (
         <>
@@ -83,13 +85,13 @@ const ViewBaseConocimiento = () => {
                                             marginRight: "15px",
                                         }}
                                         alt=""
-                                        {...portafolio}
+                                        src={portafolio}
                                     ></Image>
                                     <Typography
                                         gutterBottom
                                         variant="h5"
                                         component="div"
-                                        style={{ marginTop: "10px", fontWeight: 'Bold' }}
+                                        style={{ marginTop: "10px", fontWeight: "Bold" }}
                                     >
                                         {tema}
                                     </Typography>
@@ -115,7 +117,13 @@ const ViewBaseConocimiento = () => {
                                                 alt=""
                                                 {...doc}
                                             ></Image>
-                                            <Typography onClick={() => handleRedirect(item.pkNotas, item.contenido)} gutterBottom style={{ fontSize: "16px" }} >
+                                            <Typography
+                                                onClick={() =>
+                                                    handleRedirect(item.pkNotas, item.contenido)
+                                                }
+                                                gutterBottom
+                                                style={{ fontSize: "16px" }}
+                                            >
                                                 {item.titulo}
                                             </Typography>
                                         </div>
@@ -128,8 +136,9 @@ const ViewBaseConocimiento = () => {
                 <br></br>
                 <br></br>
             </MainLayout>
+            <Footer></Footer>
         </>
     );
 };
 
-export default ViewBaseConocimiento;
+export { PkDepartment };

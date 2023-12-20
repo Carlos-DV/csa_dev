@@ -6,11 +6,12 @@ import { useSearchParams } from 'next/navigation';
 import Button from '@mui/material/Button';
 import { Grid } from '@mui/material';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
-import { BaseConocimientoPublico, MainLayout } from "../../components";
+import { Footer, MainLayout } from "../../components/layouts";
 import { useRouter } from "next/router";
 import { baseConomientoAPI } from "../../server";
 
-const View = () => {
+
+const ViewBaseConocimiento = () => {
 
     const [key, setKey] = useState('');
     const [creadores, setCreadores] = useState<
@@ -126,8 +127,9 @@ const View = () => {
                     </div>
                 ))}
             </MainLayout>
+            <Footer></Footer>
         </>
     );
 }
 
-export default View;
+export  {ViewBaseConocimiento};

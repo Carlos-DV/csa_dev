@@ -1,14 +1,14 @@
 import { useRouter } from "next/router";
-import { BaseConocimientoPublico, MainLayout } from "../../components";
+import { Footer, MainLayout } from "../../components/layouts";
 import { useEffect, useState } from "react";
 import { baseConomientoAPI } from "../../server";
 import { Typography } from "@mui/material";
 import maletin from "../../assets/image/maletin.png";
 import doc from "../../assets/image/docs.png";
-import portafolio from "../../assets/image/portafolio.png";
+import portafolio from "../../assets/image/maletin.gif";
 import Image from "next/image";
 
-const ViewBaseConocimiento = () => {
+const PkDepartmentPrivado = () => {
     const router = useRouter();
     const [departament, setDepartament] = useState<
         {
@@ -83,7 +83,7 @@ const ViewBaseConocimiento = () => {
                                             marginRight: "15px",
                                         }}
                                         alt=""
-                                        {...portafolio}
+                                        src={portafolio}
                                     ></Image>
                                     <Typography
                                         gutterBottom
@@ -132,4 +132,4 @@ const ViewBaseConocimiento = () => {
     );
 };
 
-export default ViewBaseConocimiento;
+export {PkDepartmentPrivado};
