@@ -2,12 +2,38 @@ export type ITicketCreate = {
     ticket: ITicket
 }
 
-export interface ITicket {
-    fkBranch: number,
-    fkCntcCode: number,
-    fkSLA: number,
-    title: string,
-    description: string,
-    priority: string,
+export type ITicket = {
+    pkTicket:               number;
+    name:                   string;
+    fkBranch:               number;
+    branch:                 string;
+    fkCntcCode:             number;
+    fkSLA:                  number;
+    sla:                    string;
+    slA_Minutes:            number;
+    slA_Hours:              number;
+    fkSubCategory:          number;
+    subCategory:            string;
+    fkCategory:             number;
+    category:               string;
+    fkDepartment:           number;
+    department:             string;
+    title:                  string;
+    description:            string;
+    files:                  string;
+    status:                 string;
+    origin:                 string;
+    priority:               string;
+    create:                 string;
+    update:                 string;
+    dueDate:                string;
+    firstResponse:          string;
+    closeDate:              string;
+    isFirstResponseExpired: boolean;
+    isSLAExpired:           boolean;
+    fkUser:                 number;
+    fkUserName:              string;
+    fkAgent:                number;
+    fkAgentName:             string;
 }
 

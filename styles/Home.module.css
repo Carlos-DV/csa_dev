@@ -114,19 +114,19 @@
     flex-direction: column;
   }
 }
+
 .contentImage {
-  background-image:linear-gradient(rgba(57,70,89,.7),rgba(57,70,89,.7)),url(../src/assets/HeaderCopia.jpg);   
-  background-size:cover;
-  background-repeat:no-repeat;
-  background-position:center;
+  background-image: linear-gradient(rgba(57, 70, 89, .7), rgba(57, 70, 89, .7)), url(../src/assets/HeaderCopia.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   /* object-fit: cover; */
-  padding:10rem 0;
+  padding: 10rem 0;
   height: 35rem;
 }
-@media (min-width:768px)
-  {
-    .contentImage
-      {
-        margin:0
-      }
+
+@media (min-width:768px) {
+  .contentImage {
+    margin: 0
   }
+}

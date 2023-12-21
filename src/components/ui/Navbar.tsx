@@ -125,7 +125,7 @@ const Navbar = () => {
               ) : user && user?.isAgent === "false" ? (
                 <>
                   <Link
-                    href={"/ticket"}
+                    href={"/tickets"}
                     component={NextLink}
                     underline="none"
                     color={"white"}

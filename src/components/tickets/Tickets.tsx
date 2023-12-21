@@ -1,5 +1,6 @@
 import { Paper, Typography, Grid, Stack, Tooltip, Box } from '@mui/material'
-import Link from "next/link";
+import NextLink from "next/link";
+import Link from "@mui/material/Link";
 import { EmptyTable } from '../shared'
 import { useEffect, useState } from 'react'
 import { GridColDef } from '@mui/x-data-grid'
@@ -7,7 +8,7 @@ import { ITickets } from '../../interfaces'
 import { ticketAPI } from '../../server'
 import { useAuth } from '../../hooks'
 import { formatDateWithHours } from '../../helpers'
-import { DataGrid } from '@mui/x-data-grid/DataGrid';
+import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 
 const Tickets = () => {
 
@@ -56,7 +57,6 @@ const Tickets = () => {
             // minWidth: 80,
             // maxWidth: 80,
             flex: 1,
-            hideable: false
         },
         {
             field: '#',
@@ -81,8 +81,8 @@ const Tickets = () => {
         {
             field: 'Descripción',
             headerName: 'Descripción',
-            minWidth: 1100,
-            maxWidth: 1100,
+            minWidth: 800,
+            maxWidth: 800,
             flex: 1,
             headerAlign: 'left',
             align: "left",
@@ -93,21 +93,22 @@ const Tickets = () => {
                     <Stack>
                         <Link
                             href={`/tickets/${params.row.id}`}
-                            passHref={true}
+                            component={NextLink}
+                            underline="none"
+                            sx={{
+                            //   color: "#000000",
+                            }}
                         >
                             <Tooltip
                                 title={params.row.title}
                             >
                                 <Typography variant="body2"
                                     sx={{
-                                        // overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis'
                                         fontWeight: '700',
                                         textTransform: 'uppercase',
                                         fontSize: '1rem'
                                     }}>
-
                                     {truncatedName}
-
                                 </Typography>
                             </Tooltip>
                             <Stack direction={"row"} spacing={5}>
@@ -143,14 +144,14 @@ const Tickets = () => {
         {
             field: 'status',
             headerName: 'Status',
-            minWidth: 100,
-            maxWidth: 100,
+            // minWidth: 100,
+            // maxWidth: 100,
             flex: 1,
             headerAlign: 'center',
             align: "center",
             renderCell: (params) => (
                 <Stack direction="column" spacing={2} sx={{ margin: 3 }}>
-     {
+                    {
                         params.row.status === 'Abierto'
                             ?
                             (
@@ -221,8 +222,8 @@ const Tickets = () => {
         {
             field: 'fkAgent',
             headerName: 'Agente',
-            minWidth: 100,
-            maxWidth: 100,
+            // minWidth: 100,
+            // maxWidth: 100,
             flex: 1,
             headerAlign: 'center',
             align: "center",
@@ -261,14 +262,19 @@ const Tickets = () => {
                         ?
                         (
                             // />
-                           
+
                             <DataGrid
                                 columns={columns}
                                 rows={rowsFormat}
                                 getRowId={(row) => row.id}
                                 rowHeight={120}
+                                slots={{ toolbar: GridToolbar }}
+                                columnVisibilityModel={{
+                                    id: false,
+                                  }}
+                                sx={{padding: '0.5rem'}}
                             />
-                            
+
                             // <></>
 
                         )
@@ -283,5 +289,4 @@ const Tickets = () => {
         </>
     )
 }
-
 export { Tickets }

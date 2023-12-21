@@ -39,7 +39,7 @@ const EditorSun: FC<EditorProps> = ({ infoS3 = "", handleChangeDataEditor }): Re
       <SunEditor
         lang="es"
         width="100%"
-        height={isEditorDisabled ? '500' : '400'}
+        // height={isEditorDisabled ? '500' : '400'}
         defaultValue={infoS3}
         disable={isEditorDisabled}
         hideToolbar={isEditorDisabled}

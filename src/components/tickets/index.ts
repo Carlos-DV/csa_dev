@@ -1,1 +1,6 @@
 export * from './Tickets'
+export * from './Ticket'
+export * from './Sidebar'
+export * from './TabChat'
+export * from './TabDescription'
+export * from './TabTicket'

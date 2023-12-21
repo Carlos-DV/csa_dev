@@ -1,7 +1,5 @@
 export * from './layouts'
 export * from './login'
-export * from './Ticket'
-export * from './admin'
 export * from './base-conocimiento-publico'
 export * from './shared'
 export * from './ticket-public'
