@@ -128,6 +128,7 @@ const PkDepartmentPrivado = () => {
                 <br></br>
                 <br></br>
             </MainLayout>
+            <Footer></Footer>
         </>
     );
 };

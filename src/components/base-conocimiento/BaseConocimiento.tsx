@@ -70,6 +70,7 @@ const BaseConocimiento = () => {
                     ))}
                 </div>
             </MainLayout>
+            <Footer></Footer>
         </>
     );
 }
