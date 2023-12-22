@@ -1,3 +1,5 @@
+import { ITicket } from "./tickets";
+
 export type IBranchOffice = {
     pkBranchOffice:   number;
     code:             string;
@@ -145,4 +147,37 @@ export type IResponseTicketFullData = {
     fkUser:                  string;
     fkUserNum:               number,
     fkAgent:                 string;
+}
+
+export type ITickets = {
+    pkTicket:               number;
+    name:                   string;
+    title:                  string;
+    branch:                 string;
+    sla:                    string;
+    department:             string;
+    status:                 string;
+    isFirstResponseExpired: boolean;
+    isSLAExpired:           boolean;
+    create:                 string;
+    dueDate:                string;
+    closeDate:              string;
+    fkUser:                 string;
+    fkUserNum:              number;
+    fkAgent:                string;
+    fkAgentNum:             number;
+}
+
+export type IAgentInDep = {
+    pkUser:     number;
+    fkAgentNum: number;
+    firstName:  string;
+    lastName:   string;
+    userName:   string;
+}
+
+export type IStatusUpdate = Pick<ITicket, 'pkTicket' | 'status'>
+export type IAgentUpdate = Pick<ITicket, 'pkTicket' | 'fkAgent' | 'fkAgentName'>
+export type IDueDateUpdate = Pick<ITicket, 'pkTicket' | 'dueDate'> & {
+    dueDate?: ITicket['dueDate'] | null;
 }

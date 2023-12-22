@@ -29,7 +29,7 @@ const ShowEditorSun: FC<EditorProps> = ({ infoS3 }) => {
                 width="100%"
                 // height={'250'}
                 defaultValue={infoS3}
-                setContents={infoS3}
+                // setContents={infoS3}
                 disable={true}
                 hideToolbar={true}
                 setOptions={{

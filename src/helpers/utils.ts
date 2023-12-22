@@ -16,3 +16,19 @@ export const formatDate = (date: string) => {
   
     return newDate.toLocaleDateString('es-ES', options as Intl.DateTimeFormatOptions);
 };
+
+export const formatDateWithHours = (date: string) => {
+  const inputDate = new Date(date);
+  const options: Intl.DateTimeFormatOptions = {
+    /* weekday: "short", */
+    year: "numeric",
+    month: "2-digit",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true, // Use 12-hour clock format with AM/PM
+  };
+
+  const formattedDate = inputDate.toLocaleDateString("es-ES", options);
+  return formattedDate;
+};
