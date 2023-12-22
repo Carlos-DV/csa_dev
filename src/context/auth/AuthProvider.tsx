@@ -74,7 +74,7 @@ const AuthProvider = ({ children } : props ) => {
             console.log(loginProccess);
             dispatch({ type: '[Auth] - Login', payload: loginProccess });
             if (loginProccess.isAgent === 'true') {
-                router.push('/admin');
+                router.push('/ticket');
             }else if(loginProccess.isAgent === 'false') {
                 router.push('/ticket');
             }else{
