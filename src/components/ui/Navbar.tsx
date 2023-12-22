@@ -163,7 +163,7 @@ const Navbar = () => {
               {
                 !isLoggedIn ? (
                   <Link
-                    href={"/login"}
+                    href={"/newLogin"}
                     component={NextLink}
                     underline="none"
                     color={"white"}
