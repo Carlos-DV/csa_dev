@@ -132,9 +132,6 @@ const PkDepartment = () => {
                         )
                     )}
                 </div>
-                <br></br>
-                <br></br>
-                <br></br>
             </MainLayout>
             <Footer></Footer>
         </>
