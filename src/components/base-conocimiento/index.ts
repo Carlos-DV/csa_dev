@@ -1,1 +1,2 @@
-export * from './BaseConocimiento'
+export * from './BaseConocimiento';
+export * from './[pkDepartment]';
