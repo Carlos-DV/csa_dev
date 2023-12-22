@@ -18,10 +18,7 @@ import SentimentVerySatisfiedIcon from '@mui/icons-material/SentimentVerySatisfi
 // import { useTicket } from "hooks";
 
 const QualityService = () => {
-
-    // const { user } = useTicket()
-    // if (user?.isAgent === false) return 'Error al cargar los datos'
-
+    
     const seachParams = useSearchParams();
     console.log(seachParams.get('token'));
 
