@@ -32,7 +32,7 @@ const MainLayout: FC<PropsWithChildren> = ({ children }) => {
         </Container>
       </Box>
       <Footer />
-    </Box>
+        </Box>
   )
 }
 
