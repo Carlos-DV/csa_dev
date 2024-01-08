@@ -65,7 +65,7 @@ const Navbar = () => {
               margin: 0,
             }}
           >
-            <IconButton>
+            <IconButton href="./">
               <Image src={AnconaLogo} alt="logo" width={150} priority={true} />
             </IconButton>
             <ListItemText style={{ color: "white" }}>
@@ -134,6 +134,16 @@ const Navbar = () => {
                       <ListItemText>Ticket</ListItemText>
                     </ListItemButton>
                   </Link>
+                  <Link
+                    href={"/base-conocimiento"}
+                    component={NextLink}
+                    underline="none"
+                    color={"white"}
+                  >
+                    <ListItemButton>
+                      <ListItemText>Base Conocimiento</ListItemText>
+                    </ListItemButton>
+                  </Link>
                 </>
               ) : (
                 <>
@@ -173,7 +183,7 @@ const Navbar = () => {
               {
                 !isLoggedIn ? (
                   <Link
-                    href={"/login"}
+                    href={"/newLogin"}
                     component={NextLink}
                     underline="none"
                     color={"white"}

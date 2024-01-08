@@ -26,7 +26,7 @@ const PkDepartmentPrivado = () => {
 
     const handleRedirect = (pkNotas: any, contenido: any) => {
         router.push({
-            pathname: '/base-conocimiento/View/',
+            pathname: "/base-conocimiento-publico/ViewBaseConocimiento/",
             query: { pkNotas: pkNotas, contenido: contenido },
         });
     }
@@ -46,7 +46,7 @@ const PkDepartmentPrivado = () => {
 
     useEffect(() => {
         handlerTemas();
-    }, []);
+    }, [pkDepartment]);
 
 
     return (

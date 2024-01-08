@@ -11,28 +11,31 @@ interface Props {
 
 const MainLayout: FC<PropsWithChildren> = ({ children }) => {
   return (
-    <Box>
-      <Head>
-        <title>CSA - Centro de Servicios de Ancona</title>
-        <meta name="description" content="Home Page " />
-        <link rel="icon" href="../favicon.ic" />
-      </Head>
-      <Navbar />
-      <Box sx={{
-        marginTop: {
-          xs: '10rem',
-          md: '8rem'
-        },
-        height: '100vh'
-      }}>
-        <Container
-          maxWidth="xl"
-        >
-          {children}
-        </Container>
-      </Box>
-      <Footer />
+    <>
+      <Box>
+        <Head>
+          <title>CSA - Centro de Servicios de Ancona</title>
+          <meta name="description" content="Home Page " />
+          <link rel="icon" href="../favicon.ic" />
+        </Head>
+        <Navbar />
+        <Box sx={{
+          marginTop: {
+            xs: '10rem',
+            md: '8rem'
+          },
+          height: '90vh'
+        }}>
+          <Container
+            maxWidth="xl"
+          >
+            {children}
+          </Container>
+          
         </Box>
+
+      </Box>
+    </>
   )
 }
 

@@ -3,10 +3,23 @@ import {
     getPublicTemas,
     GetObject,
     getSearchBaseConocimiento,
-    getRegisterTemas
+    getRegisterTemas,
+    GetTopPublic,
+    GetTopRegister,
 } from '../../endpoints'
 
 export class BaseConocimientoAPI implements BaseConocimientoAPI {
+
+    GetTopPublic()
+    {
+        return GetTopPublic();
+    }
+
+    GetTopRegister()
+    {
+        return GetTopRegister();
+    }
+
     getDepartament ()
     {
         return getDepartament();

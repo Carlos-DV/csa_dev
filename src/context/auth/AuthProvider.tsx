@@ -76,6 +76,7 @@ const AuthProvider = ({ children } : props ) => {
             if (loginProccess.fkPermission === 1) {
                 router.push('/tickets');
             }else if(loginProccess.fkPermission === 2) {
+
                 router.push('/tickets');
             }else{
                 router.push('/login');

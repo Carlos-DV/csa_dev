@@ -1,11 +1,11 @@
-import { BaseConocimientoPublico, PublicLayout } from "../../components"
+import { BaseConocimientoPublico, MainLayout, PublicLayout } from "../../components"
 
 const index = () => {
   return (
     <>
-      <PublicLayout>
+      
           <BaseConocimientoPublico/>
-      </PublicLayout>
+      
     </>
   );
 }
