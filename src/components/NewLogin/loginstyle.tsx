@@ -31,7 +31,7 @@ export default `
     width: 50%;
     height: 100%;
     overflow: hidden;
-    background-image: url("https://4kwallpapers.com/images/wallpapers/dark-blue-pink-2560x2560-12661.jpg");
+    background-image: url("https://images.unsplash.com/photo-1690046793177-44d9e1b3de38?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
     background-size: cover;
     background-position: center;
   }
@@ -53,21 +53,22 @@ export default `
   }
 
   .dbutton {
-    background-color: #2020db;
-    border: 2px solid #1f1fff;
-    border-radius: 50px;
+    background: linear-gradient(45deg, rgb(16, 137, 211) 0%, rgb(18, 177, 209) 100%);
+    box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 20px 10px -15px;
+    border-radius: 30px;
     outline: none;
-    transition: .4s;
-    color: #fff;
-
+    transition: all 0.2s ease-in-out;
+    color: white;
+    border: none;
     font-size: 15px;
+    font-weight: bold;
     cursor: pointer;
     font-family: 'Figtree', sans-serif;
   }
 
   .dbutton:hover {
-    background-color: #1717c2;
-    border: 2px solid #1717c2;
+    transform: scale(1.03);
+    box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 23px 10px -20px;
   }
 
   h1 {

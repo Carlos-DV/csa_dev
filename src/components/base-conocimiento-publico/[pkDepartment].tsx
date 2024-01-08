@@ -18,6 +18,7 @@ const PkDepartment = () => {
             nombre: string;
             contenido: string;
             tema: string;
+            archivo: string;
         }[]
     >([]);
 
@@ -27,10 +28,11 @@ const PkDepartment = () => {
 
     console.log("pk", pkDepartment);
 
-    const handleRedirect = (pkNotas: any, contenido: any) => {
+    const handleRedirect = (pkNotas: any, contenido: any, archivo : any) => {
+        console.log(archivo)
         router.push({
             pathname: "/base-conocimiento-publico/ViewBaseConocimiento/",
-            query: { pkNotas: pkNotas, contenido: contenido },
+            query: { pkNotas: pkNotas, contenido: contenido, archivo: archivo },
         });
     };
 
@@ -42,8 +44,10 @@ const PkDepartment = () => {
                 nombre: item.nombre || "",
                 tema: item.tema || "",
                 contenido: item.contenido || "",
+                archivo: item.archivo || null,
             }));
             setDepartament(datos);
+            console.log('datos',datos);
         });
     };
 
@@ -119,7 +123,7 @@ const PkDepartment = () => {
                                             ></Image>
                                             <Typography
                                                 onClick={() =>
-                                                    handleRedirect(item.pkNotas, item.contenido)
+                                                    handleRedirect(item.pkNotas, item.contenido, item.archivo)
                                                 }
                                                 gutterBottom
                                                 style={{ fontSize: "16px" }}

@@ -16,14 +16,17 @@ export const lightTheme = createTheme({
       },
       error: {
         main: red.A400
-      }
+      },
+    },
+    typography: {
+      fontFamily: 'Open Sans, sans-serif'
     },
     components: {
       MuiAppBar: {
         defaultProps: {},
         styleOverrides: {
           root: {
-            backgroundColor: '#567189',
+            backgroundColor: '#232D3F',
           }
         }
       },

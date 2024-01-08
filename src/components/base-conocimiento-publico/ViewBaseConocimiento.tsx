@@ -9,6 +9,7 @@ import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import { Footer, MainLayout } from "../../components/layouts";
 import { useRouter } from "next/router";
 import { baseConomientoAPI } from "../../server";
+import { FilePdfOutlined, FileWordOutlined, FileExcelOutlined } from "@ant-design/icons";
 
 
 const ViewBaseConocimiento = () => {
@@ -34,6 +35,19 @@ const ViewBaseConocimiento = () => {
 
     console.log('pk', pkNotas);
 
+    const archivo = Array.isArray(router.query.archivo)
+        ? router.query.archivo[0]
+        : router.query.archivo || null;
+
+    console.log('name', archivo);
+
+    if (!archivo) {
+        return <div>No hay archivos disponibles.</div>;
+    }
+    console.log(archivo)
+    const enlacesArray = archivo.split(',').map(link => link.trim());
+    console.log('lista de link', enlacesArray);
+
     function obtenerParteAnteFinal(url: any) {
         const partes = url.split('/');
         return partes.slice(-1).join('/');
@@ -48,18 +62,28 @@ const ViewBaseConocimiento = () => {
             console.log('endpoint', res);
         }).
             catch((e) => {
-                console.log('sssss', e)
+                console.log('error', e)
             })
     };
 
-    const calculateDateDifference = (date: Date) => {
-        const currentDate = new Date();
-        const timeDifference = currentDate.getTime() - date.getTime();
+    const calculateDateDifference = (inputDate: Date | null) => {
 
-        const seconds = Math.floor(timeDifference / 1000);
-        const minutes = Math.floor(seconds / 60);
-        const hours = Math.floor(minutes / 60);
-        const days = Math.floor(hours / 24);
+
+        if (!inputDate || isNaN(inputDate.getTime()) || inputDate.getFullYear() <= 1) {
+            return 'Hoy'; // Si la fecha es nula o inválida, devolver 'Hoy'
+        }
+
+        // Convertir ambas fechas a la medianoche del mismo día
+        const currentDate = new Date();
+        currentDate.setHours(0, 0, 0, 0);
+
+        const inputDateCopy = new Date(inputDate);
+        inputDateCopy.setHours(0, 0, 0, 0);
+
+        const timeDifference = currentDate.getTime() - inputDateCopy.getTime();
+
+        const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+        const weeks = Math.floor(days / 7);
         const months = Math.floor(days / 30);
         const years = Math.floor(months / 12);
 
@@ -68,13 +92,15 @@ const ViewBaseConocimiento = () => {
         } else if (days === 1) {
             return 'Ayer';
         } else if (days < 7) {
-            return `${days} días atrás`;
+            return `${days} día${days !== 1 ? 's' : ''} atrás`;
+        } else if (weeks < 1) {
+            return `${days} día${days !== 1 ? 's' : ''} atrás`; // Cambiado a días si es menos de una semana
         } else if (months < 1) {
-            return `${Math.floor(days / 7)} semanas atrás`;
+            return `${weeks} semana${weeks !== 1 ? 's' : ''} atrás`;
         } else if (years < 1) {
-            return `${months} meses atrás`;
+            return `${months} mes${months !== 1 ? 'es' : ''} atrás`;
         } else {
-            return `${years} años atrás`;
+            return `${years} año${years !== 1 ? 's' : ''} atrás`;
         }
     };
 
@@ -112,16 +138,48 @@ const ViewBaseConocimiento = () => {
                     disableToolbar={true} // Para ocultar la barra de herramientas
                     setContents={key} // Contenido inicial
                 />
+                <div style={{ display: 'flex' }}>
+                    {enlacesArray.map((enlace, index) => (
+                        <div key={index}>
+                            <a href={enlace} target="_blank" rel="noopener noreferrer">
+                                {/* Agregar condición para renderizar la imagen según la extensión del archivo */}
+                                {enlace !== null && (() => {
+                                    const url = new URL(enlace);
+                                    const path = url.pathname;
+                                    const extensionMatch = path.match(/\.([^.]+)$/);
+                                    const extension = extensionMatch ? extensionMatch[1].toLowerCase() : '';
+
+                                    switch (extension) {
+                                        case 'pdf':
+                                            return <FilePdfOutlined alt={'Imagen PDF'} style={{ fontSize: '60px', height: '100px' }} />;
+                                        case 'docx':
+                                            return <FileWordOutlined alt={'Imagen DOCX'} style={{ fontSize: '60px', height: '100px' }} />;
+                                        case 'xlsx':
+                                            return <FileExcelOutlined alt={'Imagen XLSX'} style={{ fontSize: '60px', height: '100px' }} />;
+                                        case 'doc':
+                                            return <FileWordOutlined alt={'Imagen DOC'} style={{ fontSize: '60px', height: '100px' }} />;
+                                        default:
+                                            return <div>No hay imagen disponible.</div>;
+                                    }
+                                })()}
+                            </a>
+                        </div>
+                    ))}
+                </div>
                 {creadores.map((creador, index) => (
                     <div key={index}>
                         <div style={{ display: 'flex', paddingLeft: 12 }}>
                             <div style={{ paddingRight: '20px' }}>
-                                <h4>{creador.nombre}</h4>
-                                <h4>Creado: {creador.created}</h4>
+                                <h4 style={{ marginBottom: '0px' }}>{creador.nombre}</h4>
+                                <p style={{ marginTop: '0px' }}>Creado: {creador.created}</p>
                             </div>
                             <div>
-                                <h4>{creador.nombre}</h4>
-                                <h4>Ultima actualizacion: {creador.modified}</h4>
+                                <h4 style={{ marginBottom: '0px' }}>{creador.nombre}</h4>
+                                {creador.modified !== 'Hoy' && creador.modified !== 'Ayer' ? (
+                                    <p style={{ marginTop: '0px' }}>Ultima actualizacion: {creador.modified}</p>
+                                ) : (
+                                    <p style={{ marginTop: '0px' }}>Ultima actualizacion: {creador.modified === 'Hoy' ? 'Hoy' : 'Ayer'}</p>
+                                )}
                             </div>
                         </div>
                     </div>
@@ -132,4 +190,4 @@ const ViewBaseConocimiento = () => {
     );
 }
 
-export  {ViewBaseConocimiento};
+export { ViewBaseConocimiento };

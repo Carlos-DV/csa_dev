@@ -9,9 +9,6 @@ export async function getDepartament() {
     const response = await clientAxios.get(`publicknowledgebase`);
     const content = await response.data;
 
-    console.log('cont',content);
-    console.log('res',response);
-
     if (content.succeeded) {
         return delayResponse(Promise.resolve(clone(content.result)));
     } else {
@@ -55,6 +52,31 @@ export async function getSearchBaseConocimiento(id : string) {
 
 export async function getRegisterTemas(PkDepartment: string) {
     const response = await clientAxios.get(`publicknowledgebase/registered/${PkDepartment}`);
+    const content = await response.data;
+
+    if(content.succeeded){
+        return delayResponse(Promise.resolve(clone(content.result)));
+    }
+    else{
+        return delayResponse(() => error(clone(content.Message)));
+    }
+}
+
+
+export async function GetTopPublic() {
+    const response = await clientAxios.get(`/publicknowledgebase/publictop/`);
+    const content = await response.data;
+
+    if(content.succeeded){
+        return delayResponse(Promise.resolve(clone(content.result)));
+    }
+    else{
+        return delayResponse(() => error(clone(content.Message)));
+    }
+}
+
+export async function GetTopRegister() {
+    const response = await clientAxios.get(`publicknowledgebase/registeredtop/`);
     const content = await response.data;
 
     if(content.succeeded){
