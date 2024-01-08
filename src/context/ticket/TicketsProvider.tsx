@@ -172,7 +172,8 @@ const TicketsProvider = ({ children } : props) => {
 
     const handleSubmitReply = async (dataResponse: IResponseFollowUp) => {
         try {
-            const { data } = await followUpAPI.createFollowUp(dataResponse);
+            const data  = await followUpAPI.createFollowUp(dataResponse);
+            console.log(data);
             // setReply([...reply, dataResponse]);
             // const a = JSON.parse(dataResponse.message)
             // console.log(a);

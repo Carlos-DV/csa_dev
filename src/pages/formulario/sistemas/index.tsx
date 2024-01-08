@@ -1,5 +1,5 @@
 import { FormularioRH, PublicLayout } from "../../../components";
-import { FormTI } from "../../../components/formulario/FormTI";
+import { FormTI } from "../../../components";
 
 const index = () => {
     return (

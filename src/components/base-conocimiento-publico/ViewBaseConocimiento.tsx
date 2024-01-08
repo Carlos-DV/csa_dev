@@ -41,6 +41,10 @@ const ViewBaseConocimiento = () => {
 
     console.log('name', archivo);
 
+    useEffect(() => {
+        fetctSearch();
+    }, [pkNotas]);
+
     if (!archivo) {
         return <div>No hay archivos disponibles.</div>;
     }
@@ -104,9 +108,8 @@ const ViewBaseConocimiento = () => {
         }
     };
 
-
-    const fetctSearch = () => {
-        baseConomientoAPI.getSearchBaseConocimiento(pkNotas).then((res) => {
+    const fetctSearch = async () => {
+        await baseConomientoAPI.getSearchBaseConocimiento(pkNotas).then((res) => {
             // Asegúrate de ajustar esto según la estructura real de tu respuesta
             const creadores = res.map((item: any) => ({
                 nombre: item.nombre || '',
@@ -116,10 +119,6 @@ const ViewBaseConocimiento = () => {
             setCreadores(creadores);
         });
     };
-
-    useEffect(() => {
-        fetctSearch();
-    }, [pkNotas]);
 
     handleObject();
 

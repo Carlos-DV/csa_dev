@@ -31,6 +31,7 @@ import { TabTicket } from './TabTicket';
 import { formatDateWithHours } from '../../helpers';
 import { ticketAPI } from '../../server';
 import { TabHistory } from './TabHistory';
+import { useAuth } from '../../hooks';
 
 
 // FUNCTION TABS
@@ -193,6 +194,9 @@ const Sidebar: FC<IResponseProp> = ({ ticket, setTicket }) => {
             width: '100%',
         },
     };
+    const { user } = useAuth()
+    
+    if(user && user.id !== ticket.fkUser) return <Typography>Error al cargar el ticket...</Typography>
     return (
         <Grid container spacing={1}>
             <Grid item xs={12} md={3}>

@@ -60,7 +60,8 @@ const Login = () => {
 
     return (
         <>
-            <style jsx global>{style}</style>
+            <style jsx>{style}</style>
+            {/** / */}
             <div className="general">
                 <div className="container">
                     <form

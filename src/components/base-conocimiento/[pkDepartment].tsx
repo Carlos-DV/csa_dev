@@ -31,6 +31,11 @@ const PkDepartmentPrivado = () => {
         });
     }
 
+    useEffect(() => {
+        handlerTemas();
+    }, [pkDepartment]);
+
+    
     const handlerTemas = () => {
         baseConomientoAPI.getRegisterTemas(pkDepartment).then((res) => {
             const datos = res.map((item: any) => ({
@@ -43,11 +48,6 @@ const PkDepartmentPrivado = () => {
             setDepartament(datos);
         });
     };
-
-    useEffect(() => {
-        handlerTemas();
-    }, [pkDepartment]);
-
 
     return (
         <>
