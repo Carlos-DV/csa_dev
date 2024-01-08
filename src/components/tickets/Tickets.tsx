@@ -231,7 +231,7 @@ const Tickets = () => {
     ]
     return (
         <>
-            <Paper sx={{ boxShadow: 4, p: 4, marginBottom: 5, borderRadius: 3 }}>
+            {/* <Paper sx={{ boxShadow: 4, p: 4, marginBottom: 5, borderRadius: 3 }}>
                 <Grid container spacing={4}>
                     <Grid item xs={12} sm={6} md={3}>
                         <Paper sx={{ boxShadow: 4, p: 4, }}>
@@ -255,7 +255,7 @@ const Tickets = () => {
                         </Paper>
                     </Grid>
                 </Grid>
-            </Paper>
+            </Paper> */}
             <Paper sx={{ boxShadow: 4, p: 4, borderRadius: 3 }}>
                 {
                     rows.length > 0

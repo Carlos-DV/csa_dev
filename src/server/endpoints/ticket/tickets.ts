@@ -1,4 +1,4 @@
-import { IAgentUpdate, IDueDateUpdate, IMessageFollowUp, IResponseFollowUp, IResponseTicket, IStatusUpdate, ITicket, ITicketCreate, ITickets } from "../../../interfaces";
+import { IAgentUpdate, IDueDateUpdate, IHistory, IMessageFollowUp, IQuality, IResponseFollowUp, IResponseTicket, IStatusUpdate, ITicket, ITicketCreate, ITickets, IToken } from "../../../interfaces";
 import { clientAxios } from "../../axios";
 import { clone, delayResponse, error } from "../../utils";
 
@@ -10,12 +10,13 @@ type ApiResponse = {
     succeeded: boolean,
 }
 
-export const createTicketRequest = async (newTicket : ITicket) => {
+export const createTicketRequest = async (newTicket : ITicketCreate) => {
     try {
         const url = BASE;
         console.log(newTicket)
         const { data } = await clientAxios.post(url, newTicket);
         const { succeeded, result } = data
+        console.log(data);
         if(succeeded) {
             return delayResponse(Promise.resolve(clone(result)));
         }
@@ -164,3 +165,54 @@ export const createFollowUp = async (newFollowUp : IResponseFollowUp) : Promise<
         return delayResponse(() => error(clone(err)));
     }
 } 
+
+// validate token ticket
+export const validToken = async  (req: string) : Promise<IToken> => {
+    try {
+        const url= `${BASE}/token/${req}`;
+        const { data } = await clientAxios.get<ApiResponse>(url);
+        const { succeeded, result } = data;
+        if(succeeded) {
+            return delayResponse(Promise.resolve(clone(result)));
+        }
+        return delayResponse(() => error(clone(data)));
+    } catch (err) {
+        console.log(err);
+        return delayResponse(() => error(clone(err)));
+    }
+}
+//manda la calificación de un ticket
+export const createQuality = async (req: IQuality): Promise<boolean> => {
+    try {
+        console.log(req);
+        const url = `/quality`
+        const { data } = await clientAxios.post<ApiResponse>(url, req);
+        const { succeeded, result, message } = data;
+        if(succeeded) {
+            return delayResponse(Promise.resolve(clone(result)));
+        }
+        console.log(data);
+        return delayResponse(() => error(clone(message)));
+        
+    } catch (err) {
+        console.log(err);
+        return delayResponse(() => error(clone(err)));
+    }
+}
+
+//history
+//obtengo el historial de un ticket
+export const getHistoryById = async(req: number) : Promise<IHistory[]> => {
+    try {
+        const url= `/history/${req}`;
+        const { data } =await clientAxios.get<ApiResponse>(url);
+        const { succeeded, result } = data
+        if (succeeded) {
+            return delayResponse(Promise.resolve(clone(result)));
+        }
+        return delayResponse(() => error(clone(data)));
+    } catch (err) {
+        console.log(`${err} <---- error endpoint`)
+        return delayResponse(() => error(clone(err)));
+    }
+}

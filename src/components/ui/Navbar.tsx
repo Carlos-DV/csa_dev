@@ -19,7 +19,7 @@ import { userAgent } from "next/server";
 
 const Navbar = () => {
   const { isLoggedIn, user, logout } = useAuth();
-  console.log(typeof user?.isAgent);
+  console.log(typeof user?.fkPermission);
   return (
     <AppBar
       //position='sticky'
@@ -99,16 +99,16 @@ const Navbar = () => {
                   <ListItemText>Inicio</ListItemText>
                 </ListItemButton>
               </Link>
-              {user && user?.isAgent === "true" ? (
+              {user && user?.fkPermission === 1 ? (
                 <>
                   <Link
-                    href={"/admin"}
+                    href={"/tickets"}
                     component={NextLink}
                     underline="none"
                     color={"white"}
                   >
                     <ListItemButton>
-                      <ListItemText>Admin</ListItemText>
+                      <ListItemText>Mis Tickets</ListItemText>
                     </ListItemButton>
                   </Link>
                   <Link
@@ -122,7 +122,7 @@ const Navbar = () => {
                     </ListItemButton>
                   </Link>
                 </>
-              ) : user && user?.isAgent === "false" ? (
+              ) : user && user?.fkPermission === 2? (
                 <>
                   <Link
                     href={"/tickets"}
@@ -138,6 +138,16 @@ const Navbar = () => {
               ) : (
                 <>
                   <Link
+                    href={"tickets"}
+                    component={NextLink}
+                    underline="none"
+                    color={"white"}
+                  >
+                    <ListItemButton>
+                      <ListItemText>Mis Tickets</ListItemText>
+                    </ListItemButton>
+                  </Link>
+                  {/* <Link
                     href={"ticket-publico"}
                     component={NextLink}
                     underline="none"
@@ -146,7 +156,7 @@ const Navbar = () => {
                     <ListItemButton>
                       <ListItemText>Ticket Público</ListItemText>
                     </ListItemButton>
-                  </Link>
+                  </Link> */}
                   <Link
                     href={"/base-conocimiento-publico"}
                     component={NextLink}
@@ -173,17 +183,10 @@ const Navbar = () => {
                     </ListItemButton>
                   </Link>
                 ) : (
-                  // <Link
-                  //   href={'/'}
-                  //   component={NextLink}
-                  //   underline='none'
-                  //   color={'white'}
-                  // >
                   <ListItemButton onClick={logout}>
                     <ListItemText>Logout</ListItemText>
                   </ListItemButton>
                 )
-                // </Link>
               }
             </List>
           </Box>

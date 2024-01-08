@@ -1,10 +1,12 @@
 import { FormularioRH, PublicLayout } from "../../../components";
+import { FormTI } from "../../../components/formulario/FormTI";
 
 const index = () => {
     return (
         <>
             <PublicLayout>
-                <FormularioRH></FormularioRH>
+                {/* <FormularioRH></FormularioRH> */}
+                <FormTI/>
             </PublicLayout>
         </>
     )

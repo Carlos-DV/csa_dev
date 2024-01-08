@@ -27,13 +27,14 @@ export interface ID {
 /* Users */
 
 export interface IUser {
-  id: number;
-  userName: string;
-  email: string;
-  firstName: string;
-  lastName: string;
+  id:           number;
+  userName:     string;
+  email:        string;
+  firstName:    string;
+  lastName:     string;
   departament?: [];
-  isAgent?: string;
+  fkPermission: number;
+  permission?:  string;
 }
 export interface IUpdateUser {
   id: number;

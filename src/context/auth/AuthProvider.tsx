@@ -9,13 +9,13 @@ type ContextProps = {
     isLoggedIn: boolean;
     user?: IUser;
     loginUser: (user: string, password: string) => Promise<boolean>;
-    isAgent?: boolean;
+    fkPermission?: number;
     logout: () => void;
 }
 export interface AuthState {
     isLoggedIn: boolean;
     user?: IUser;
-    isAgent?: boolean;
+    fkPermission?: number;
 }
 
 interface props {
@@ -49,7 +49,7 @@ const AuthProvider = ({ children } : props ) => {
                     firstName: localStorage.getItem("userFirstName") as string,
                     lastName: localStorage.getItem("userLastName") as string,
                     departament: JSON.parse(localStorage.getItem("departments") || '[]'),
-                    isAgent: localStorage.getItem("isAgent") as string,
+                    fkPermission: Number(localStorage.getItem("fkPermission")),
                 };
                 dispatch({ type: '[Auth] - Login', payload: user });
                 console.log(user);
@@ -73,9 +73,9 @@ const AuthProvider = ({ children } : props ) => {
             const loginProccess = await logintAPI.postAuthenticate({userName, password})
             console.log(loginProccess);
             dispatch({ type: '[Auth] - Login', payload: loginProccess });
-            if (loginProccess.isAgent === 'true') {
-                router.push('/admin');
-            }else if(loginProccess.isAgent === 'false') {
+            if (loginProccess.fkPermission === 1) {
+                router.push('/tickets');
+            }else if(loginProccess.fkPermission === 2) {
                 router.push('/tickets');
             }else{
                 router.push('/login');
@@ -99,7 +99,7 @@ const AuthProvider = ({ children } : props ) => {
         localStorage.removeItem("roles");
         localStorage.removeItem("companyLogo");
         localStorage.removeItem("companyName");
-        localStorage.removeItem("isAgent");
+        localStorage.removeItem("fkPermission");
         localStorage.removeItem('departments');
         localStorage.removeItem("userName");
         dispatch({type: '[Auth] - Logout'});

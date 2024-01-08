@@ -11,11 +11,11 @@ import { Box, Avatar } from '@mui/material';
 import Tooltip from '@mui/material/Tooltip';
 import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 // assets
-import { ShowEditorSun } from '../shared'; 
+import { ShowEditorSun, Spinner } from '../shared';
 //Helpers
 // import { formatDate, formatDateWithHours } from 'services/utils';
 import * as signalR from '@microsoft/signalr';
-import { ticketAPI } from '../../server'; 
+import { ticketAPI } from '../../server';
 import { Stack } from '@mui/system';
 //css
 // import "../../../styles/Home.module.css";
@@ -24,7 +24,7 @@ import nf from "../../assets/imagesChat/nf-chat.png"
 // import AnimateButton from 'components/@extended/AnimateButton';
 //componets
 import { FormReply } from './form';
-import { SnackbarAlert } from '../shared'; 
+import { SnackbarAlert } from '../shared';
 import { useUI } from '../../hooks';
 
 interface IProps {
@@ -39,12 +39,12 @@ const TabChat: FC<IProps> = ({ ticket, setTicket }) => {
     const [followS3, setFollowS3] = useState<IMessageFollowUp[]>([])
     // const [showReply, setShowReply] = useState<boolean>(false)
     const { toogleReply, showReply } = useUI()
-        // Snackbar
-        const [openSnackBar, setOpenSnackBar] = useState(false);
-        const [snackBarType, setSnackBarType] = useState('info');
-        const [snackBarMessage, setSnackBarMessage] = useState("");
-        // Module
-        // const [loading, setLoading] = useState(false);
+    // Snackbar
+    const [openSnackBar, setOpenSnackBar] = useState(false);
+    const [snackBarType, setSnackBarType] = useState('info');
+    const [snackBarMessage, setSnackBarMessage] = useState("");
+    //loading
+    const [loading, setLoading] = useState<boolean>(false);
 
     useEffect(() => {
         const connection = new signalR.HubConnectionBuilder()
@@ -87,6 +87,7 @@ const TabChat: FC<IProps> = ({ ticket, setTicket }) => {
 
     useEffect(() => {
         const getFollowUp = async () => {
+            setLoading(true);
             if (ticket.pkTicket) {
                 if (ticket.pkTicket !== undefined && ticket.pkTicket !== 0) {
                     try {
@@ -97,6 +98,7 @@ const TabChat: FC<IProps> = ({ ticket, setTicket }) => {
                         setFollowS3([])
                         console.log(`Error in response from getFollowUpByTicket:${error}`);
                     }
+                    setLoading(false);
                 }
             }
         }
@@ -107,116 +109,120 @@ const TabChat: FC<IProps> = ({ ticket, setTicket }) => {
         <>
 
             {
-                followS3.length > 0
+                loading
                     ?
-                    (
-                        // <Box sx={{ maxHeight: '50rem', overflowY: 'auto', padding: '1rem', ...customScrollbarStyle }}>
-                        <div className='contentImageChat scrollBar'>
-                            {
-                                followS3.map((fs3, index) => (
-                                    (
-                                        <Fragment key={fs3.idMessage}>
-                                            {/* <Divider /> */}
-                                            <Card
-                                                key={fs3.idMessage}
-                                                sx={{
-                                                    position: 'relative',
-                                                    width: '55%',
-                                                    marginLeft: fs3.fkUser !== ticket.fkUser ? 'auto' : 0,
-                                                    marginRight: fs3.fkUser !== ticket.fkUser ? 0 : 'auto',
-                                                    marginBottom: '1.5rem',
-                                                    // backgroundColor: fs3.fkUser !== ticket.fkUserNum ? 'primary.main' : 'secondary.main',
-                                                    backgroundColor: '#f1f1f1',
-                                                    marginTop: index === 0 ? 0 : '1.5rem',
-                                                    boxShadow: 5,
-                                                    borderRadius: fs3.fkUser !== ticket.fkUser ? '0 0 0 2rem' : '0 0 2rem 0',
-                                                    overflow: 'visible',
-                                                    '&::before': {
-                                                        content: '""',
-                                                        position: 'absolute',
-                                                        top: '0rem',
-                                                        left: fs3.fkUser !== ticket.fkUser ? 'auto' : '-0.75rem',
-                                                        right: fs3.fkUser !== ticket.fkUser ? '-0.75rem' : 'auto',
-                                                        width: '1.5rem',
-                                                        height: '1.5rem',
-                                                        borderStyle: 'solid',
-                                                        borderWidth: '0.75rem',
-                                                        // borderBottomColor: fs3.fkUser !== ticket.fkUserNum ? 'transparent' : '#ff0000',
-                                                        // borderTopColor: fs3.fkUser !== ticket.fkUserNum ? '#ff0000' : 'transparent',
-                                                        borderBottomColor: 'transparent',
-                                                        // borderTopColor: fs3.fkUser !== ticket.fkUserNum ? 'primary.main' : 'success.main',
-                                                        borderTopColor: '#f1f1f1',
-                                                        borderRightColor: 'transparent',
-                                                        borderLeftColor: 'transparent',
-                                                    },
-                                                }}
-                                            >
-                                                <CardContent
+                    <Spinner />
+                    :
+                    followS3.length > 0
+                        ?
+                        (
+                            // <Box sx={{ maxHeight: '50rem', overflowY: 'auto', padding: '1rem', ...customScrollbarStyle }}>
+                            <div className='contentImageChat scrollBar'>
+                                {
+                                    followS3.map((fs3, index) => (
+                                        (
+                                            <Fragment key={fs3.idMessage}>
+                                                {/* <Divider /> */}
+                                                <Card
+                                                    key={fs3.idMessage}
                                                     sx={{
-                                                        textAlign: fs3.fkUser !== ticket.fkUser ? 'right' : 'left',
-                                                        padding:'0.5rem',
+                                                        position: 'relative',
+                                                        width: '55%',
+                                                        marginLeft: fs3.fkUser !== ticket.fkUser ? 'auto' : 0,
+                                                        marginRight: fs3.fkUser !== ticket.fkUser ? 0 : 'auto',
+                                                        marginBottom: '1.5rem',
+                                                        // backgroundColor: fs3.fkUser !== ticket.fkUserNum ? 'primary.main' : 'secondary.main',
+                                                        backgroundColor: '#f1f1f1',
+                                                        marginTop: index === 0 ? 0 : '1.5rem',
+                                                        boxShadow: 5,
+                                                        borderRadius: fs3.fkUser !== ticket.fkUser ? '0 0 0 2rem' : '0 0 2rem 0',
+                                                        overflow: 'visible',
+                                                        '&::before': {
+                                                            content: '""',
+                                                            position: 'absolute',
+                                                            top: '0rem',
+                                                            left: fs3.fkUser !== ticket.fkUser ? 'auto' : '-0.75rem',
+                                                            right: fs3.fkUser !== ticket.fkUser ? '-0.75rem' : 'auto',
+                                                            width: '1.5rem',
+                                                            height: '1.5rem',
+                                                            borderStyle: 'solid',
+                                                            borderWidth: '0.75rem',
+                                                            // borderBottomColor: fs3.fkUser !== ticket.fkUserNum ? 'transparent' : '#ff0000',
+                                                            // borderTopColor: fs3.fkUser !== ticket.fkUserNum ? '#ff0000' : 'transparent',
+                                                            borderBottomColor: 'transparent',
+                                                            // borderTopColor: fs3.fkUser !== ticket.fkUserNum ? 'primary.main' : 'success.main',
+                                                            borderTopColor: '#f1f1f1',
+                                                            borderRightColor: 'transparent',
+                                                            borderLeftColor: 'transparent',
+                                                        },
                                                     }}
                                                 >
-                                                    <Box
+                                                    <CardContent
                                                         sx={{
-                                                            display: 'flex',
-                                                            flexDirection: 'column',
-                                                            justifyContent: fs3.fkUser !== ticket.fkUser ? 'flex-end' : 'flex-start',
-                                                            gap: 1,
-                                                            marginBottom: 0.5,
+                                                            textAlign: fs3.fkUser !== ticket.fkUser ? 'right' : 'left',
+                                                            padding: '0.5rem',
                                                         }}
                                                     >
-                                                        <Stack
-                                                            direction={"row"}
-                                                            spacing={2}
+                                                        <Box
+                                                            sx={{
+                                                                display: 'flex',
+                                                                flexDirection: 'column',
+                                                                justifyContent: fs3.fkUser !== ticket.fkUser ? 'flex-end' : 'flex-start',
+                                                                gap: 1,
+                                                                marginBottom: 0.5,
+                                                            }}
                                                         >
                                                             <Stack
-                                                                sx={{
-                                                                    display: 'flex',
-                                                                    flexDirection: fs3.fkUser !== ticket.fkUser ? 'row-reverse' : 'row',
-                                                                    flexGrow: 1,
-                                                                    gap: 1,
-
-                                                                }}
+                                                                direction={"row"}
+                                                                spacing={2}
                                                             >
-                                                                <Tooltip title={fs3.fkUserName}>
-                                                                    <Avatar
-                                                                        alt={fs3.fkUserName}
-                                                                        src={`https://ui-avatars.com/api/?name=${fs3?.fkUserName}&background=FFF&color=000&size=64`}
-                                                                    />
-                                                                </Tooltip>
+                                                                <Stack
+                                                                    sx={{
+                                                                        display: 'flex',
+                                                                        flexDirection: fs3.fkUser !== ticket.fkUser ? 'row-reverse' : 'row',
+                                                                        flexGrow: 1,
+                                                                        gap: 1,
 
-                                                                <ShowEditorSun infoS3={fs3.message} />
+                                                                    }}
+                                                                >
+                                                                    <Tooltip title={fs3.fkUserName}>
+                                                                        <Avatar
+                                                                            alt={fs3.fkUserName}
+                                                                            src={`https://ui-avatars.com/api/?name=${fs3?.fkUserName}&background=FFF&color=000&size=64`}
+                                                                        />
+                                                                    </Tooltip>
+
+                                                                    <ShowEditorSun infoS3={fs3.message} />
+                                                                </Stack>
                                                             </Stack>
-                                                        </Stack>
-                                                    </Box>
-                                                </CardContent>
-                                            </Card>
-                                        </Fragment>
-                                    )))}
-                        </div>
-                        // </Box>
-                    )
-                    :
-                    (
-                        <>
-                            <Box sx={{
-                                display: showReply ? 'none' : 'flex',
-                                flexDirection: 'column',
-                                alignItems: 'center',
-                                marginTop: '2rem',
-                                marginBottom: '2rem'
-                            }}>
-                                <Image
-                                    src={nf}
-                                    alt="Chat Image"
-                                    width={150}
-                                    height={150}
-                                />
-                                <Typography sx={{ fontSize: '0.8rem', textTransform: 'uppercase', fontWeight: 700 }}>Este Ticket aún no ha sido contestado...</Typography>
-                            </Box>
-                        </>
-                    )
+                                                        </Box>
+                                                    </CardContent>
+                                                </Card>
+                                            </Fragment>
+                                        )))}
+                            </div>
+                            // </Box>
+                        )
+                        :
+                        (
+                            <>
+                                <Box sx={{
+                                    display: showReply ? 'none' : 'flex',
+                                    flexDirection: 'column',
+                                    alignItems: 'center',
+                                    marginTop: '2rem',
+                                    marginBottom: '2rem'
+                                }}>
+                                    <Image
+                                        src={nf}
+                                        alt="Chat Image"
+                                        width={150}
+                                        height={150}
+                                    />
+                                    <Typography sx={{ fontSize: '0.8rem', textTransform: 'uppercase', fontWeight: 700 }}>Este Ticket aún no ha sido contestado...</Typography>
+                                </Box>
+                            </>
+                        )
             }
             <Box>
                 {
@@ -232,18 +238,18 @@ const TabChat: FC<IProps> = ({ ticket, setTicket }) => {
                         :
                         <Stack direction="row" justifyContent="flex-end">
                             {/* <AnimateButton> */}
-                                <Button
-                                    startIcon={<QuestionAnswerIcon />}
-                                    size="small"
-                                    onClick={toogleReply}
-                                    color="primary"
-                                    disabled={ticket.status === "Cerrado"}
-                                    sx={{
-                                        marginTop: '1.5rem',
-                                    }}
-                                >
-                                    Responder
-                                </Button>
+                            <Button
+                                startIcon={<QuestionAnswerIcon />}
+                                size="small"
+                                onClick={toogleReply}
+                                color="primary"
+                                disabled={ticket.status === "Cerrado"}
+                                sx={{
+                                    marginTop: '1.5rem',
+                                }}
+                            >
+                                Responder
+                            </Button>
                             {/* </AnimateButton> */}
                         </Stack>
                 }

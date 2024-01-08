@@ -30,6 +30,7 @@ import { TabDescription } from './TabDescription';
 import { TabTicket } from './TabTicket';
 import { formatDateWithHours } from '../../helpers';
 import { ticketAPI } from '../../server';
+import { TabHistory } from './TabHistory';
 
 
 // FUNCTION TABS
@@ -533,6 +534,17 @@ const Sidebar: FC<IResponseProp> = ({ ticket, setTicket }) => {
                                     >
                                         {/* <QualityService/> */}
                                     </TabPanel>
+
+                                    
+                                    <TabPanel
+                                        value={value}
+                                        index={4}
+                                    >
+                                        <TabHistory
+                                            ticket={ticket?.pkTicket}
+                                        />
+                                    </TabPanel>
+
 
                                 </Paper>
                             </>

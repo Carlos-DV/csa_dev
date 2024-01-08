@@ -1,6 +1,6 @@
-export type ITicketCreate = {
-    ticket: ITicket
-}
+// export type ITicketCreate = {
+//     ticket: ITicket
+// }
 
 export type ITicket = {
     pkTicket:               number;
@@ -37,3 +37,4 @@ export type ITicket = {
     fkAgentName:             string;
 }
 
+export type ITicketCreate = Pick<ITicket, 'pkTicket' |'fkBranch'|'fkCntcCode'|'fkSLA'|'status'| 'title' | 'description' | 'origin' | 'priority'>
