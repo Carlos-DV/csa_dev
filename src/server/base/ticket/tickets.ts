@@ -1,8 +1,8 @@
-import { IAgentUpdate, IDueDateUpdate, IResponseFollowUp, IStatusUpdate, ITicket } from "../../../interfaces";
-import { createFollowUp, createTicketRequest, getFollowUpByTicket, getListTickets, getTicketByFkUser, getTicketById, getTickets, updateAgentTicket, updateDuedateTicket, updateStatusTicket } from "../../endpoints"
+import { IAgentUpdate, IDueDateUpdate, IHistory, IQuality, IResponseFollowUp, IStatusUpdate, ITicket, ITicketCreate } from "../../../interfaces";
+import { createFollowUp, createQuality, createTicketRequest, getFollowUpByTicket, getHistoryById, getListTickets, getTicketByFkUser, getTicketById, getTickets, updateAgentTicket, updateDuedateTicket, updateStatusTicket, validToken } from "../../endpoints"
 
 export class TicketAPI implements TicketAPI {
-    createTicketRequest(ticket: ITicket){
+    createTicketRequest(ticket: ITicketCreate){
         return createTicketRequest(ticket);
     }
     getTickets() {
@@ -29,7 +29,16 @@ export class TicketAPI implements TicketAPI {
     getFollowUpByTicket(req: number) {
         return getFollowUpByTicket(req)
     }
-    createFollowUp(req: IResponseFollowUp){
+    createFollowUp(req: IResponseFollowUp) {
         return createFollowUp(req);
+    }
+    validToken(req: string) {
+        return validToken(req);
+    }
+    createQuality(req: IQuality) {
+        return createQuality(req);
+    }
+    getHistoryById(req: number) : Promise<IHistory[]> {
+        return getHistoryById(req)
     }
 }

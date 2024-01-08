@@ -54,9 +54,11 @@ const FormReply: FC<IResponseProp> = ({ ticket, setTicket,setOpenSnackBar,setSna
       setOpenSnackBar(true);
       return;
     }
+    const x =  Date.now()
     //msg for follow s3
     const newMessage: IMessageFollowUp = {
-      idMessage: crypto.randomUUID(),
+      // idMessage: crypto.randomUUID(),
+      idMessage: x.toString(),
       pkTicket: ticket.pkTicket,
       message: description,
       date: getDateNowFormat(),
@@ -173,12 +175,13 @@ const FormReply: FC<IResponseProp> = ({ ticket, setTicket,setOpenSnackBar,setSna
                 variant='contained'
                 size='small'
                 type='submit'
-                sx={{ borderRadius: '0.5rem 0 0 0.5rem' }}
+                // sx={{ borderRadius: '0.5rem 0 0 0.5rem' }}
               >
                 Enviar
               </Button>
             {/* </AnimateButton>
             <AnimateButton> */}
+            {/*
               <IconButton
                 aria-label="more"
                 id="long-button"
@@ -199,7 +202,6 @@ const FormReply: FC<IResponseProp> = ({ ticket, setTicket,setOpenSnackBar,setSna
               >
                 <ArrowDropDownIcon />
               </IconButton>
-            {/* </AnimateButton> */}
           </Stack>
           <Menu
             id="basic-menu"
@@ -212,7 +214,8 @@ const FormReply: FC<IResponseProp> = ({ ticket, setTicket,setOpenSnackBar,setSna
           >
             <MenuItem onClick={() => handleSubmitCloseAPI()}>Enviar y Cerrar</MenuItem>
           </Menu>
-
+        */}
+        </Stack>
           {/* <AnimateButton> */}
             <Button
               color='error'

@@ -181,3 +181,21 @@ export type IAgentUpdate = Pick<ITicket, 'pkTicket' | 'fkAgent' | 'fkAgentName'>
 export type IDueDateUpdate = Pick<ITicket, 'pkTicket' | 'dueDate'> & {
     dueDate?: ITicket['dueDate'] | null;
 }
+export type IToken = {
+    pkTicket: number,
+    token:    boolean,
+}
+export type IQuality = {
+    pkQuality: number,
+    fkTicket:  number,
+    comment:   string,
+    number:    number,
+    text:      string
+}
+
+export type IHistory = {
+    pkHistory:   number;
+    fkTicket:    number;
+    changes:     string;
+    currentDate: string;
+}

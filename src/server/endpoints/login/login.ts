@@ -54,7 +54,7 @@ export const postAuthenticate = async (req: IPostAuthenticateRequest): Promise<I
               localStorage.setItem("roles", dataTransform.roles[0]);
               localStorage.setItem("companyLogo", dataTransform.company.logo.toString());
               localStorage.setItem("companyName", dataTransform.company.name.toString());
-              localStorage.setItem("isAgent", result.isAgent);
+              localStorage.setItem("fkPermission", result.fkPermission);
               localStorage.setItem('departments', JSON.stringify(result.department));
               localStorage.setItem("userName", dataTransform.userName);
 
@@ -66,7 +66,7 @@ export const postAuthenticate = async (req: IPostAuthenticateRequest): Promise<I
                   firstName: dataTransform.firstName,
                   lastName: dataTransform.lastName,
                   departament: result.department,
-                  isAgent: result.isAgent.toString(),
+                  fkPermission: result.fkPermission,
               };
               return delayResponse(Promise.resolve(clone(user)));
         } else {
@@ -153,6 +153,7 @@ export async function postRefreshTokenForMulticompany() {
             email: encrypted(data.email),
             firstName: encrypted(data.firstName),
             lastName: encrypted(data.lastName),
+            fkPermission: data.fkPermission,
         };
 
         return delayResponse(Promise.resolve(clone(user)));

@@ -8,7 +8,7 @@ export const formatDate = (date: string) => {
     const newDate = new Date(year, month, day);
   
     const options = {
-      // weekday: 'short',
+      weekday: 'long',
       year: 'numeric',
       month: 'short',
       day: 'numeric',

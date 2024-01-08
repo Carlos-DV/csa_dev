@@ -22,7 +22,7 @@ export interface IPostAuthenticateResponse {
     refreshToken: string;
     refreshTokenExpiration: string;
     company: IResponseCompany;
-    IsAgent: boolean;
+    fkPermission: number;
 }
 
 export interface IPostRevokeToken {

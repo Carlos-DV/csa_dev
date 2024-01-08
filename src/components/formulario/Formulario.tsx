@@ -58,7 +58,7 @@ const Formulario = () => {
                                 {creador.description}
                             </Typography>
                             <CardActions style={{ paddingLeft: '15px' }}>
-                                <Button size="small" color="info" href="formulario/rh">
+                                <Button size="small" color="info" href="formulario/sistemas">
                                     Enviar Ticket
                                 </Button>
                                 <Typography style={{ margin: '10px', paddingLeft: '11px' }} variant="body2" color="text.secondary">
