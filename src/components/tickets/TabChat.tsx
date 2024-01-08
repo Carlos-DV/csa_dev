@@ -48,7 +48,8 @@ const TabChat: FC<IProps> = ({ ticket, setTicket }) => {
 
     useEffect(() => {
         const connection = new signalR.HubConnectionBuilder()
-            .withUrl(`https://localhost:7053/ticketHub`)
+            // .withUrl(`https://localhost:7053/ticketHub`)
+            .withUrl(`${process.env.NEXT_PUBLIC_BACKEND_URL}`)
             .build();
 
         const startConnection = async () => {

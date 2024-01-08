@@ -148,13 +148,13 @@ const Navbar = () => {
               ) : (
                 <>
                   <Link
-                    href={"tickets"}
+                    href={"ticket-publico"}
                     component={NextLink}
                     underline="none"
                     color={"white"}
                   >
                     <ListItemButton>
-                      <ListItemText>Mis Tickets</ListItemText>
+                      <ListItemText>Ticket Público</ListItemText>
                     </ListItemButton>
                   </Link>
                   {/* <Link

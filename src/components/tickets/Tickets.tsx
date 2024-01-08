@@ -49,7 +49,6 @@ const Tickets = () => {
             fkAgentNum: row.fkAgentNum,
         }
     })
-
     const columns: GridColDef[] = [
         {
             field: 'id',
@@ -229,6 +228,9 @@ const Tickets = () => {
             align: "center",
         },
     ]
+
+    if(user?.fkPermission === 0 || user?.fkPermission === undefined) return <Typography>Error al cargar los datos</Typography>
+
     return (
         <>
             {/* <Paper sx={{ boxShadow: 4, p: 4, marginBottom: 5, borderRadius: 3 }}>

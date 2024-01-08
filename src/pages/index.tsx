@@ -33,7 +33,7 @@ const Home: NextPage = () => {
   const { user } = useAuth();
 
   const RedirectBaseConocimiento = () => {
-    if (user?.isAgent === "true") {
+    if (user?.fkPermission === 1) {
       router.push({ pathname: "/base-conocimiento/" });
     } else {
       router.push({ pathname: "/base-conocimiento-publico/" });
@@ -41,7 +41,7 @@ const Home: NextPage = () => {
   };
 
   const RedirectTicket = () => {
-    if (user?.isAgent === "true") {
+    if (user?.fkPermission === 1) {
       router.push({ pathname: "/ticket/" });
     } else {
       router.push({ pathname: "/ticket-publico/" });
@@ -84,10 +84,11 @@ const Home: NextPage = () => {
   };
 
   const Validation = () => {
-    if (user?.isAgent === "true") {
+    if (user?.fkPermission === 1) {
       handlerTopRegister();
     } else {
-      handlerTopPublic();
+      // handlerTopPublic();
+      console.log("show public")
     }
   };
 
