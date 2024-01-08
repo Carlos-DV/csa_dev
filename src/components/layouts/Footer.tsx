@@ -21,7 +21,7 @@ const Footer = () => {
             </div>
 
             <footer style={{
-                backgroundColor: '#7B8FA1',
+                backgroundColor: '#232D3F',
                 position: 'relative',
                 bottom: 0,
                 width: '100%',
